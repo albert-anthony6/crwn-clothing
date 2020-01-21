@@ -18,7 +18,7 @@ const Header = ({currentUser, hidden}) => (
         <Link className="logo-container" to="/">
             <Logo className="logo"/>
         </Link>
-
+        <input type="checkbox" id="toggle"/>
         <div className="options">
             <Link className="option" to="/shop">
                 SHOP
@@ -28,8 +28,9 @@ const Header = ({currentUser, hidden}) => (
                 CONTACT
             </Link>
             {currentUser ? <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div> : <Link className="option" to='/signin'>SIGN IN</Link>}
-            <CartIcon/>
         </div>
+        <CartIcon className="cart-icon"/>
+        <label htmlFor="toggle">&#9776;</label>
         {
             hidden ? null : <CartDropdown/>   
         }
