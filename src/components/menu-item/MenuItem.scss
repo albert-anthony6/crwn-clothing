@@ -65,4 +65,17 @@
         font-size: 16px;
       }
     }
+
+    @media screen and (max-width: 800px){
+      min-width: 45%;
+      height: 32vh;
+
+      &.large{
+        height: 32vh;
+      }
+    }
+
+    @media screen and (max-width: 480px){
+      min-width: 100%;
+    }
   }
