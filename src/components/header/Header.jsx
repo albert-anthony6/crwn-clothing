@@ -32,7 +32,7 @@ class Header extends React.Component{
     render(){
         return(
             <div className="header">
-                <Link className="logo-container" onClick={() => this.togg()} to="/">
+                <Link className="logo-container" onClick={this.state.bool ? () => this.togg() : null} to="/">
                     <Logo className="logo"/>
                 </Link>
                 <input type="checkbox" checked={this.state.bool} id="toggle"/>
