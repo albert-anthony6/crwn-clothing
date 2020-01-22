@@ -10,5 +10,14 @@
     .buttons{
         display: flex;
         justify-content: space-between;
+
+        @media screen and (max-width: 500px){
+            flex-direction: column;
+            padding-right: 90px;
+        }
+    }
+
+    @media screen and (max-width: 500px){
+        width: 70vw;
     }
 }
