@@ -9,6 +9,7 @@
   left: 0px;
   z-index: 999;
   padding: 0 50px;
+  font-size: 22px;
 
   .logo-container {
     height: 100%;
@@ -17,7 +18,6 @@
   }
 
   .options {
-    // width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -44,20 +44,24 @@
 
   @media screen and (max-width: 800px){
     margin-bottom: 15px;
+
+    .options .option{
+      padding: 10px 7px;
+    }
+  }
+
+  @media screen and (max-width: 700px){
+    font-size: 1.2em;
   }
 
   @media screen and (max-width: 500px){
     label{
       display: block;
       cursor: pointer;
-      // margin: 28px 48px 0 0;
-      // margin-top: 5vh;
       margin-top: 28px;
     }
 
     .cart-icon{
-      // margin-top: 25px;
-      // margin-top: 5vh;
       margin-top: 28px;
     }
 
@@ -74,7 +78,6 @@
 
       .option{
         color: white;
-        // display: none;
       }
     }
 

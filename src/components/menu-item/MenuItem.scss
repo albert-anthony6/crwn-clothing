@@ -73,6 +73,10 @@
       &.large{
         height: 32vh;
       }
+
+      .content{
+        opacity: 0.9;
+      }
     }
 
     @media screen and (max-width: 480px){
