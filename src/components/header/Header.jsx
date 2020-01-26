@@ -1,47 +1,48 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {ReactComponent as Logo} from "../../assets/crown.svg";
 import {auth} from '../../firebase/firebase.utils';
-import './Header.scss';
 import CartIcon from '../cart-icon/CartIcon';
 import CartDropdown from '../cart-dropdown/CartDropdown';
+
+import {HeaderContainer, LogoContainer, OptionsContainer, OptionLink, CartIconStyles, LabelStyles, InputStyles} from './header.styles';
 
 import {createStructuredSelector} from 'reselect';
 import {selectCartHidden} from '../../redux/cart/cartSelectors';
 import {selectCurrentUser} from '../../redux/user/userSelectors';
 import {selectBurgerBool} from '../../redux/burger/burgerSelectors';
 
-
 import {connect} from 'react-redux';
 import { toggleBurgerBool } from '../../redux/burger/burgerActions';
 
 const Header = ({currentUser, hidden, bool, dispatch}) => (
-    <div className="header">
-        <Link className="logo-container" onClick={bool ? () => dispatch(toggleBurgerBool()) : null} to="/">
+    <HeaderContainer>
+        <LogoContainer onClick={bool ? () => dispatch(toggleBurgerBool()) : null} to="/">
             <Logo className="logo"/>
-        </Link>
-        <input type="checkbox" checked={bool} id="toggle"/>
-        <div className="options">
-            <Link className="option" onClick={() => dispatch(toggleBurgerBool())} to="/">
+        </LogoContainer>
+        <InputStyles type="checkbox" checked={bool} id="toggle"/>
+        <OptionsContainer id="options">
+            <OptionLink onClick={() => dispatch(toggleBurgerBool())} to="/">
                 HOME
-            </Link>
-            <Link className="option" onClick={() => dispatch(toggleBurgerBool())} to="/shop">
+            </OptionLink>
+            <OptionLink onClick={() => dispatch(toggleBurgerBool())} to="/shop">
                 SHOP
-            </Link>
+            </OptionLink>
 
-            <Link className="option" onClick={() => dispatch(toggleBurgerBool())} to="/shop">
+            <OptionLink onClick={() => dispatch(toggleBurgerBool())} to="/shop">
                 CONTACT
-            </Link>
-            {currentUser ? <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div> : <Link className="option" onClick={() => dispatch(toggleBurgerBool())} to='/signin'>SIGN IN</Link>}
-        </div>
+            </OptionLink>
+            {currentUser ? <OptionLink as="div" onClick={() => auth.signOut()}>SIGN OUT</OptionLink> : <OptionLink onClick={() => dispatch(toggleBurgerBool())} to='/signin'>SIGN IN</OptionLink>}
+        </OptionsContainer>
         <div onClick={bool ? () => dispatch(toggleBurgerBool()) : null}>
-            <CartIcon className="cart-icon"/>
+            <CartIconStyles>
+                <CartIcon/>
+            </CartIconStyles>
         </div>
-        <label onClick={() => dispatch(toggleBurgerBool())} htmlFor="toggle">&#9776;</label>
+        <LabelStyles onClick={() => dispatch(toggleBurgerBool())} htmlFor="toggle">&#9776;</LabelStyles>
         {
             hidden ? null : <CartDropdown/>   
         }
-    </div>
+    </HeaderContainer>
 );
 
 const mapStateToProps = createStructuredSelector({
