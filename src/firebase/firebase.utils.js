@@ -36,6 +36,38 @@ const config = {
     }
 
     return userRef;
+  };
+
+  //THIS FUNCTION IS USED TO PULL DATA FROM SHOP.DATA COMPONENT AND CREATE NEW COLLECTION DOCUMENTS IN FIREBASE WITH EACH OBJECT
+  
+  // export const addCollectionAndDocuments = async (collectionKey, ObjectsToAdd) => {
+  //   const collectionRef = firestore.collection(collectionKey);
+    
+  //   const batch = firestore.batch();
+  //   ObjectsToAdd.forEach(obj => {
+  //     const newDocRef = collectionRef.doc();
+  //     batch.set(newDocRef, obj);
+  //   });
+
+  //   return await batch.commit();
+  // };
+
+  export const convertCollectionsSnapshotToMap = (collections) => {
+    const transformedCollection = collections.docs.map(doc => {
+      const {title, items} = doc.data();
+
+      return{
+        routeName: encodeURI(title.toLowerCase()),
+        id: doc.id,
+        title,
+        items
+      }
+    });
+
+    return transformedCollection.reduce((accumulator, collection) => {
+      accumulator[collection.title.toLowerCase()] = collection;
+      return accumulator;
+    }, {});
   }
 
   firebase.initializeApp(config);
