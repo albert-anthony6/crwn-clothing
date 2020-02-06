@@ -12,6 +12,7 @@ import {selectCurrentUser} from '../../redux/user/userSelectors';
 import {selectBurgerBool} from '../../redux/burger/burgerSelectors';
 
 import {connect} from 'react-redux';
+import {signOutStart} from '../../redux/user/userActions';
 import { toggleBurgerBool } from '../../redux/burger/burgerActions';
 
 const Header = ({currentUser, hidden, bool, dispatch}) => (
@@ -31,7 +32,7 @@ const Header = ({currentUser, hidden, bool, dispatch}) => (
             <OptionLink onClick={() => dispatch(toggleBurgerBool())} to="/shop">
                 CONTACT
             </OptionLink>
-            {currentUser ? <OptionLink as="div" onClick={() => auth.signOut()}>SIGN OUT</OptionLink> : <OptionLink onClick={() => dispatch(toggleBurgerBool())} to='/signin'>SIGN IN</OptionLink>}
+            {currentUser ? <OptionLink as="div" onClick={() => dispatch(signOutStart())}>SIGN OUT</OptionLink> : <OptionLink onClick={() => dispatch(toggleBurgerBool())} to='/signin'>SIGN IN</OptionLink>}
         </OptionsContainer>
         <div onClick={bool ? () => dispatch(toggleBurgerBool()) : null}>
             <CartIconStyles>
